@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Favorite Movies</title>    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./assets/stylesheet.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class = "w3-container w3-center w3-animate-left"><h2>Favorite Movies</h2>
+      <p>Movie data populated from OMBD API using an AJAX GET method.Table row/data dynamically created using jquery</p></div>
+      <table class="table" id = "table">
+        <thead>
+          <tr>
+            <!-- The scope attribute specifies that this is a header for a column -->
+            <th scope="col">Movie Name</th>
+            <th scope="col">Year</th>
+            <th scope="col">Actors</th>
+            <th scope="col">Plot</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Interstellar</td>
+            <td>2014</td>
+            <td>
+              Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow
+            </td>
+            <td>
+              A team of explorers travel through a wormhole in space in an
+              attempt to ensure humanity's survival
+            </td>
+          </tr>
+          <!-- Insert additional movie rows here -->
+        </tbody>
+      </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      // The below code fills in the first row of the table
+      var movie = "Inception";
+      var queryURL =
+        "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=deb3818";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(typeof response);
+        var tRow = $("<tr>");
+
+        // Create and save a reference to new empty table row
+        var titleTd = $("<td>").text(response.Title);
+        var yearTd = $("<td>").text(response.Year);
+        var actorsTd = $("<td>").text(response.Actors);
+        var plotTd = $("<td>").text(response.Plot);
+        // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+        tRow.append(titleTd, yearTd, actorsTd, plotTd);
+
+        // Append the td elements to the new table row
+
+        $("tbody").append(tRow);
+
+        // Append the table row to the tbody element
+      });
+
+      // Repeat the above logic to add rows for two more movies of your choice
+      var movie = "The Matrix";
+      var queryURL =
+        "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=deb3818";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var tRow = $("<tr>");
+        var tBody = $("tbody");
+
+        var titleTd = $("<td>").text(response.Title);
+        var yearTd = $("<td>").text(response.Year);
+        var actorsTd = $("<td>").text(response.Actors);
+        var plotTd = $("<td>").text(response.Plot);
+
+        tRow.append(titleTd, yearTd, actorsTd, plotTd);
+
+        tBody.append(tRow);
+      });
+
+      var movie = "Shutter Island";
+      var queryURL =
+        "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=deb3818";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var tRow = $("<tr>");
+        var tBody = $("tbody");
+
+        var titleTd = $("<td>").text(response.Title);
+        var yearTd = $("<td>").text(response.Year);
+        var actorsTd = $("<td>").text(response.Actors);
+        var plotTd = $("<td>").text(response.Plot);
+
+        tRow.append(titleTd, yearTd, actorsTd, plotTd);
+
+        tBody.append(tRow);
+      });
+
+      var movie = "The butterfly effect";
+      var queryURL =
+        "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=deb3818";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var tRow = $("<tr>");
+        var tBody = $("tbody");
+
+        var titleTd = $("<td>").text(response.Title);
+        var yearTd = $("<td>").text(response.Year);
+        var actorsTd = $("<td>").text(response.Actors);
+        var plotTd = $("<td>").text(response.Plot);
+
+        tRow.append(titleTd, yearTd, actorsTd, plotTd);
+
+        tBody.append(tRow);
+      });
+      // BONUS: Once complete, try to make your code as DRY as possible through the use of functions
+    </script>
+  </body>
+</html>
